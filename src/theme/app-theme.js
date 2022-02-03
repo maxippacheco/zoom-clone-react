@@ -1,6 +1,7 @@
 
 export const colors = {
-	// TODO:
 	dark: '#1b1b25',
-	grey: ''
+	dark_less: '#232333',
+	gray: '#4c4c6b',
+	white: '#f0efef'
 }
