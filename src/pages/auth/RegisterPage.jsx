@@ -19,7 +19,8 @@ export const RegisterPage = () => {
 		ev.preventDefault();
 
 		dispatch(register(name, email, password));
-
+	
+		
 	};
 	
 
