@@ -2,6 +2,7 @@ import React from 'react';
 
 import { AiOutlineSend } from 'react-icons/ai';
 import { MdMeetingRoom } from 'react-icons/md';
+import { useSelector } from 'react-redux';
 
 import { 
 	Container, 
@@ -16,7 +17,14 @@ import {
 } from './HomePageStyles';
 
 export const HomePage = () => {
-  return(
+
+	const { socketIO } = useSelector( state => state.socket );
+
+	socketIO.emit('test', {
+		maximo: 'Hola'
+	})
+
+ 	return(
 		<Container>
 			<PrincipalPanel>
 				<Title>Join into a room</Title>

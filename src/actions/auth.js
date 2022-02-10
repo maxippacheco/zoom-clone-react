@@ -67,6 +67,10 @@ export const login = ( email, password ) => {
 			
 			if (resp.ok) {
 				
+
+				const token = resp.token;
+				localStorage.setItem('token', token);	
+
 				dispatch({
 					type: types.login,
 					payload:{
@@ -74,11 +78,6 @@ export const login = ( email, password ) => {
 						token: resp.token,
 					}
 				});
-
-				// dispatch({
-				// 	type: types.startChecking
-				// })
-
 				
 				Swal.fire('success', resp.msg, 'success');
 

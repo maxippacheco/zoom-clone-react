@@ -8,5 +8,8 @@ export const types = {
 	finishChecking: '[ CHECKING ] Finish checking',
 
 	addError: '[ ERROR ] New Error',
-	removeError: '[ ERROR ] Errors removed'
+	removeError: '[ ERROR ] Errors removed',
+
+	connectSocket: '[ SOCKET ] Connect Socket',
+	disconnectSocket: '[ SOCKET ] Disconnect Socket'
 }
