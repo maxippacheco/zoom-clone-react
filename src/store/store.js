@@ -9,6 +9,7 @@ import { rootReducer } from '../reducers/rootReducers';
 export const store = createStore(
     rootReducer,
     composeWithDevTools(
+    	// thunk =>  middleware that help us to return an dispatch action as a function and not as a obj
         applyMiddleware( thunk )
     )
 );

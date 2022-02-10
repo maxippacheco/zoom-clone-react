@@ -12,7 +12,9 @@ export const errorsReducer = (state = initialState, action) => {
 				...state,
 				msgError: {
 					...action.payload.errors
-				}	
+				},
+				checking: false
+					
 			}
 			
 		case types.removeError:

@@ -29,20 +29,16 @@ export const register = ( name, email, password ) => {
 				
 			}else{
 	
-					dispatch({
-						type: types.addError,
-						payload:{
-							errors: resp.errors
-						}
-					})	
-	
-					Swal.fire('Error', resp.errors.errors[0].msg, 'error');
-	
+				dispatch({
+					type: types.addError,
+					payload:{
+						errors: resp.errors
+					}
+				})	
 
+				Swal.fire('Error', resp.errors.errors[0].msg, 'error');
 	
 			}
-			
-			
 
 
 		} catch (error) {
@@ -55,8 +51,44 @@ export const register = ( name, email, password ) => {
 	  
 };
 
-export const login = () => {
-  
+export const login = ( email, password ) => {
+
+	return async( dispatch ) => {
+
+		try {
+			
+			
+			// TODO: CHECKING TOKEN AND SESSION
+			// dispatch({
+			// 	type: types.startChecking
+			// })
+
+			const resp = await fetchSinToken('login', { email, password }, 'POST');
+			
+			if (resp.ok) {
+				
+				dispatch({
+					type: types.login,
+					payload:{
+						user: resp.user,
+						token: resp.token,
+					}
+				});
+
+				// dispatch({
+				// 	type: types.startChecking
+				// })
+
+				
+				Swal.fire('success', resp.msg, 'success');
+
+			}
+
+
+		} catch (error) {
+			console.log(error);
+		}
+	}
 };
 
 
