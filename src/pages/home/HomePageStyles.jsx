@@ -11,7 +11,7 @@ export const Container = styled.main`
 `;
 
 export const PrincipalPanel = styled.div`
-	width: 40%;
+	width: 50%;
 	height: 70%;
 	background-color: ${ colors.dark_less };
 	border-radius: 10px;
@@ -104,7 +104,7 @@ export const UserID = styled.span`
 	color: ${ colors.primary_color };
 	
 	@media only screen and ( max-width: 420px ){
-		font-size: 18px;
+		font-size: 20px;
 	}
 `;
 

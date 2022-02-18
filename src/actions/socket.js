@@ -1,47 +1,32 @@
 import { io } from "socket.io-client";
 import { types } from "../types/types";
 
+export const connectSocket = (serverPath) => {
+  return (dispatch) => {
+    const token = localStorage.getItem("token");
 
-export const connectSocket = ( serverPath ) => {
+    if (!token) return;
 
-	return ( dispatch ) => {
-      
-		const token = localStorage.getItem('token');
+    const socketTemp = io.connect(serverPath, {
+      transports: ["websocket"],
+      autoConnect: true,
+      forceNew: true,
+      query: {
+        "x-token": token,
+      },
+    });
 
-		if (!token) return;
+    dispatch({
+      type: types.connectSocket,
+      payload: {
+        socket: socketTemp,
+      },
+    });
+  };
+};
 
-      const socketTemp = io.connect( serverPath, {
-            transports: ['websocket'],
-            autoConnect: true,
-            forceNew: true,
-            query: {
-                'x-token': token
-            }
-      });
-
-		console.log(socketTemp);
-
-
-      dispatch({
-			type: types.connectSocket,
-			payload:{
-				socket: socketTemp
-			}
-		})
-
-
-	}
-
-}
-
-
+//TODO:
 export const disconnectSocket = () => {
-
-	return ( dispatch ) => {
-
-		
-	}
-
-}
-
+  return (dispatch) => {};
+};
 

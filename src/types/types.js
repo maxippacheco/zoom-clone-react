@@ -11,5 +11,10 @@ export const types = {
 	removeError: '[ ERROR ] Errors removed',
 
 	connectSocket: '[ SOCKET ] Connect Socket',
-	disconnectSocket: '[ SOCKET ] Disconnect Socket'
+	disconnectSocket: '[ SOCKET ] Disconnect Socket',
+
+	createRoom: '[ ROOM ] Create Room',
+	joinRoom:   '[ ROOM ] Join Room',
+	connectUser: '[ ROOM ] Connect user',
+	leaveRoom:  '[ ROOM ] Leave Room'
 }

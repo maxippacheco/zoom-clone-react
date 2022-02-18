@@ -2,7 +2,8 @@ import { types } from "../types/types";
 
 const initialState = {
 	socketIO: null,
-	online: false
+	online: false,
+	
 }
 
 export const socketReducer = (state = initialState, action) => {
@@ -23,6 +24,7 @@ export const socketReducer = (state = initialState, action) => {
 				online: false
 			}
 
+		
 		default:
 			return state;
 	}
