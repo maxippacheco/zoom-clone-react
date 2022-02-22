@@ -5,8 +5,9 @@ import { colors } from '../../theme/app-theme';
 
 import { Container, Main, WithoutCamera, Navbar, Footer, LogOut, CustomInput } from './RoomPageStyles';
 import { useCameraSettings } from '../../hooks/useCameraSettings';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+import { connectUser } from '../../actions/room';
 
 export const RoomPage = () => {
 
@@ -14,16 +15,15 @@ export const RoomPage = () => {
   
   const { user  } = useSelector( state => state.auth);
   const { socketIO  } = useSelector( state => state.socket);
+  const { roomId, users  } = useSelector( state => state.room);
 
-  // const { roomId  } = useSelector( state => state.room);
+  const dispatch = useDispatch();
   
-  // const { room_id } = useParams();
-  
-  // const dispatch = useDispatch();
 
   useEffect(() => {
     
-    socketIO.emit('user-connected-in-room', { user, roomId: user._id });
+    // socketIO.emit('user-connected-in-room', { user, roomId: user._id });
+    socketIO.emit('roomId', roomId);
 
 
   }, [socketIO]);
@@ -32,7 +32,7 @@ export const RoomPage = () => {
   useEffect(() => {
   
     socketIO.on('user-list', (payload) => {
-      console.log(payload);
+      dispatch( connectUser( payload ) ); 
 
     })
 
@@ -46,12 +46,14 @@ export const RoomPage = () => {
 
       <Main>
             <>
-              <WithoutCamera style={{ backgroundColor: colors.dark_less}}>
                 {
-                  camera && user
-                    &&  <Webcam height="100%" width="100%" audio={audio} /> 
+                  
+                  camera && users?.map( user => (
+                      <WithoutCamera style={{ backgroundColor: colors.dark_less}} key={ user._id}>
+                        <Webcam height="100%" width="100%" audio={audio} /> 
+                      </WithoutCamera>
+                    ))
                 }
-              </WithoutCamera>
               {/* 
               <WithoutCamera style={{ backgroundColor: colors.dark_less}}>
                 {

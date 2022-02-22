@@ -20,7 +20,7 @@ export const roomReducer = (state = initialState, action) => {
 		case types.connectUser:
 			return{
 				...state,
-				users: [...action.payload]
+				users: [action.payload, ...state.users]
 			}
 
 		default:
